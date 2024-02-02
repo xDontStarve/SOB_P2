@@ -5,6 +5,7 @@ import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.GenericType;
+import java.util.ArrayList;
 import java.util.List;
         
 public class GameService{
@@ -27,4 +28,22 @@ public class GameService{
         }
         return null;
     }
+    
+    public Game findGameById(long id){
+        List<Game> games = findGames();
+        for (Game game : games){
+            if (game.getId() == id) return game;
+        }
+        return null;
+    }
+    
+    /*public List<Game> findGamesByGenre (String genre){
+        List<Game> games = findGames();
+        List<Game> gamesGenreList = new ArrayList<Game>();
+        for (Game game : games){
+            if (game.getGenre() genre)
+        }
+        
+    }
+        */
 }

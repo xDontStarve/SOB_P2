@@ -1,6 +1,7 @@
 package deim.urv.cat.homework2.controller;
 
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.mvc.binding.MvcBinding;
 import jakarta.validation.constraints.Email;
@@ -13,7 +14,7 @@ import java.io.Serializable;
 @RequestScoped
 public class UserForm implements Serializable {
     private static final long serialVersionUID = 1L;
-        
+          
     // JSR 303 validation
     @NotBlank
     @FormParam("firstName")

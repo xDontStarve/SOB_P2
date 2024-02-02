@@ -12,6 +12,7 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import java.util.List;
 import deim.urv.cat.homework2.model.*;
+import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.logging.Logger;
 
@@ -25,6 +26,7 @@ public class MainPageController {
     @Inject Models models;
     @Inject AlertMessage flashMessage;
     @Inject SignUpAttempts attempts;
+    @Inject UserSession userSession;
     
     @GET
     public String showForm() {
@@ -32,7 +34,6 @@ public class MainPageController {
         for (Game game : games){
             System.out.println(game);
         }
-        
         return "MainPage.jsp"; // Injects CRSF token
     }
 }
