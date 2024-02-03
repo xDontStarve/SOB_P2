@@ -12,7 +12,7 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import java.util.List;
 import deim.urv.cat.homework2.model.*;
-import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.*;
 
 import java.util.logging.Logger;
 
@@ -27,10 +27,13 @@ public class MainPageController {
     @Inject AlertMessage flashMessage;
     @Inject SignUpAttempts attempts;
     @Inject UserSession userSession;
+    @Inject HttpSession session;
     
     @GET
     public String showForm() {
         List<Game> games = gameService.findGames();
+        models.put("userSession", userSession);
+        session.setAttribute("userSession", userSession);
         for (Game game : games){
             System.out.println(game);
         }

@@ -6,57 +6,70 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JSP Page</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* Estilo para scroll infinito */
+        /* Ajustes para las tarjetas y las imágenes */
+        .card {
+            margin-bottom: 20px; /* Espacio entre tarjetas */
+            background: rgba(255, 255, 255, 0.8); /* Hace las tarjetas ligeramente transparentes */
+            color: #000; /* Color del texto dentro de las tarjetas */
+        }
+        .card-img-top {
+            width: 100%;
+            object-fit: contain; /* Ajusta las imágenes para que se muestren completas */
+            height: 200px; /* Ajusta la altura de la imagen de la tarjeta */
+            background-color: #f8f9fa; /* Fondo para rellenar el espacio vacío, ajusta según tu diseño */
+        }
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .container-fluid {
+            max-width: 90%;
+        }
         #gameList {
             overflow-y: auto;
-            height: 400px;
+            height: calc(100vh - 150px);
         }
-        /* Estilo para las imágenes de los juegos */
-        .game-img {
-            width: 100px; /* Ajusta este valor según necesites */
-            height: auto;
-            margin-right: 20px; /* Espacio entre la imagen y el texto */
+        body {
+            background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+            color: #fff; /* Cambia el color del texto para mejorar la legibilidad */
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container-fluid">
         <h1>Listado de Juegos</h1>
-        <div id="gameList" class="list-group">
-            <% 
+        <div id="gameList" class="row">
+            <%
                 GameService service = new GameService();
                 List<Game> games = service.findGames();
                 if(games != null && !games.isEmpty()) {
                     for(Game game : games) {
-                        // Utiliza 'list-group-item-action' para elementos clicables, haciendo que el ítem se destaque al pasar el mouse
-                        // 'flex-column align-items-start' organiza el contenido en columnas y los alinea al inicio
-                        // 'd-flex' activa flexbox para el elemento, permitiendo un diseño flexible
-                        out.println("<a href='gameDetails/" + game.getId() + "' class='list-group-item list-group-item-action flex-column align-items-start d-flex'>");
-                        // Incluir imagen del juego. 'game-img' es una clase personalizada para controlar el tamaño y el margen de la imagen.
-                        out.println("<img src=/Homework2/resources/img/" + game.getName() + ".png class='game-img'>");
-                        // 'd-flex w-100 justify-content-between' permite un diseño flexible con ancho al 100% y distribuye el espacio entre elementos
-                        out.println("<div>");
-                        // 'mb-1' añade un margen inferior para separar visualmente el nombre del juego de los detalles
-                        out.println("<h5 class='mb-1'>" + game.getName() + "</h5>");
-                        // Continúa con la descripción y detalles del juego, utilizando clases de Bootstrap para el espaciado
-                        out.println("<p class='mb-1'>Unidades disponibles: " + game.getUnits() + "</p>");
-                        // 'small' y 'text-muted' son clases para texto pequeño y suavizado, respectivamente, utilizadas aquí para detalles adicionales
-                        out.println("<small>Género: " + game.getGenre() + ", Consola: " + game.getConsole() + "</small>");
-                        out.println("</div>");
-                        out.println("</a>");
+                        // Agrega un enlace (<a>) alrededor de toda la tarjeta
+                        out.println("<div class='col-md-4'>"); // 3 columnas para las tarjetas
+                        out.println("<a href='gameDetails/" + game.getId() + "' class='card-link'>"); // Reemplaza 'URL-de-la-pagina-de-destino' con la URL correcta
+                        out.println("<div class='card'>");
+                        // Asegura que la imagen sea fluida y se ajuste bien dentro de la tarjeta
+                        out.println("<img src='/Homework2/resources/img/" + game.getName() + ".png' class='card-img-top img-fluid' alt='" + game.getName() + "'>");
+                        out.println("<div class='card-body'>");
+                        out.println("<h5 class='card-title'>" + game.getName() + "</h5>");
+                        out.println("<p class='card-text'>Unidades disponibles: " + game.getUnits() + "</p>");
+                        out.println("<p class='card-text'><small class='text-muted'>Género: " + game.getGenre() + ", Consola: " + game.getConsole() + "</small></p>");
+                        out.println("</div>"); // Cierra card-body
+                        out.println("</div>"); // Cierra card
+                        out.println("</a>"); // Cierra el enlace
+                        out.println("</div>"); // Cierra la columna
                     }
                 } else {
-                    // Mensaje cuando no hay juegos disponibles
                     out.println("<p>No se encontraron juegos disponibles.</p>");
                 }
             %>
-            <h5>${pageContext.request.contextPath}</h5>
         </div>
     </div>
-
 </body>
 </html>

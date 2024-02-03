@@ -10,6 +10,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.core.Response;
+import java.net.URI;
 
 @Controller
 @Path("gameDetails")
@@ -29,14 +30,15 @@ public class GameDetailsController {
     
     @POST
     @Path("{gameId}")
-    public String addGameToCart(@PathParam("gameId") Long gameId) {
+    public Response addGameToCart(@PathParam("gameId") Long gameId) {
         Game game = gameService.findGameById(gameId);
         if (!userSession.getIsLoggedIn()){
             String oldURL = "http://localhost:8080/Homework2/Web/gameDetails/"+gameId;
             models.put(oldURL, oldURL);
-            return "login.jsp";
+            String loginURL = "http://localhost:8080/Homework2/Web/login";
+            return Response.status(Response.Status.FOUND).location(URI.create(loginURL)).build();
         }
-            return "login.jsp";
+        return Response.ok().build();
     }
     
     
