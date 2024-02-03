@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="deim.urv.cat.homework2.service.GameService"%>
 <%@page import="deim.urv.cat.homework2.model.Game"%>
+<%@page import="deim.urv.cat.homework2.controller.UserSession"%>
 <%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
@@ -43,6 +44,16 @@
 </head>
 <body>
     <div class="container-fluid">
+        <% 
+            UserSession userSession = (UserSession) session.getAttribute("userSession"); // Recupera el objeto UserSession de la sesión
+            if (userSession != null && userSession.getIsLoggedIn()) {
+        %>
+            <div class="alert alert-success" role="alert">
+                Hola, <%= userSession.getUsername() %>
+            </div>
+        <% } else { %>
+            <button class="btn btn-primary btn-corner" onclick="redireccionar()">Login</button>
+        <% } %>
         <h1>Listado de Juegos</h1>
         <div id="gameList" class="row">
             <%
@@ -71,5 +82,11 @@
             %>
         </div>
     </div>
+        <script>
+            function redireccionar() {
+                // Redirigir a login
+                window.location.href = "login";
+            }
+        </script>
 </body>
 </html>

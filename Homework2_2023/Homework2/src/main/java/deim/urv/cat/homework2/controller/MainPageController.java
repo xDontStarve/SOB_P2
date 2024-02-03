@@ -1,7 +1,4 @@
 package deim.urv.cat.homework2.controller;
-
-import deim.urv.cat.homework2.model.AlertMessage;
-import deim.urv.cat.homework2.model.SignUpAttempts;
 import deim.urv.cat.homework2.service.GameService;
 
 import jakarta.inject.Inject;
@@ -24,8 +21,6 @@ public class MainPageController {
     @Inject Logger log;
     @Inject GameService gameService;
     @Inject Models models;
-    @Inject AlertMessage flashMessage;
-    @Inject SignUpAttempts attempts;
     @Inject UserSession userSession;
     @Inject HttpSession session;
     

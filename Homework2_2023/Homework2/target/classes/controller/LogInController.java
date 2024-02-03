@@ -6,9 +6,12 @@ import jakarta.ws.rs.FormParam;
 import jakarta.ws.rs.core.Response;
 import deim.urv.cat.homework2.service.AuthenticationService;
 import jakarta.inject.Inject;
+import jakarta.mvc.Controller;
 import jakarta.mvc.Models;
+import jakarta.mvc.security.CsrfProtected;
 import jakarta.ws.rs.GET;
 
+@Controller
 @Path("/login")
 public class LogInController {
     @Inject Models models;
@@ -33,6 +36,7 @@ public class LogInController {
     }
     
     @GET
+    @CsrfProtected
     public String showForm() {
         return "login.jsp";
     }
