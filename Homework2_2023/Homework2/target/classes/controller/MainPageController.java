@@ -23,11 +23,15 @@ public class MainPageController {
     @Inject GameService gameService;
     @Inject UserSession userSession;
     @Inject HttpSession session;
+    @Inject Cart cart;
     
     @GET
     public String showForm() {
         List<Game> games = gameService.findGames();
         session.setAttribute("userSession", userSession);
+        session.setAttribute("cart", cart);
+        String oldURL = "MainPage";
+        session.setAttribute("oldURL", oldURL);
         for (Game game : games){
             System.out.println(game);
         }
@@ -36,7 +40,7 @@ public class MainPageController {
     
     @POST
     public String login(){
-        String oldURL = "http://localhost:8080/Homework2/Web/MainPage";
+        String oldURL = "MainPage";
         session.setAttribute("oldURL", oldURL);
         return "login-form.jsp";
     }

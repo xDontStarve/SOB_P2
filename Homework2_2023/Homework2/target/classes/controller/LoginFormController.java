@@ -43,7 +43,11 @@ public class LoginFormController {
             session.setAttribute("customerDTO", customerDTO);
             userSession.setIsLoggedIn(true);
             userSession.setUsername(userForm.getUsername());
-            return "MainPage.jsp";
+            String oldURL = (String) session.getAttribute("oldURL");
+            if ((oldURL.isBlank()) || (oldURL==null)){
+                return "MainPage.jsp";
+            }
+            return "redirect:"+oldURL;
         } else {
             // No existe customer
             response.close();

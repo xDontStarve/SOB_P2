@@ -19,6 +19,9 @@
                 <p class="card-text">Email: ${customerDTO.email}</p>
             </div>
         </div>
+            <form action="${mvc.uri('logout')}" method="POST">
+                <button type="submit" class="btn btn-primary">Logout</button>
+            </form>
     </div>
 </body>
 </html>

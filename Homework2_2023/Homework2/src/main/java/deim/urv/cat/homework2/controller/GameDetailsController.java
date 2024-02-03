@@ -23,12 +23,16 @@ public class GameDetailsController {
     @Inject UserSession userSession;
     @Inject Models models;
     @Inject HttpSession session;
+    @Inject Cart cart;
     
     @GET
     @Path("{gameId}") // Captura el ID del juego como parte de la URL
     public String showGameDetails(@PathParam("gameId") Long gameId) {
         Game game = gameService.findGameById(gameId);
         session.setAttribute("userSession", userSession);
+        session.setAttribute("cart", cart);
+        String oldURL = "gameDetails/"+gameId;
+        session.setAttribute("oldURL", oldURL);
         models.put("game", game); // Agrega el juego al modelo para que pueda ser accesible en la vista
         return "gameDetails.jsp"; // Redirige a la vista con el modelo actualizado
     }
@@ -38,7 +42,7 @@ public class GameDetailsController {
     public Response addGameToCart(@PathParam("gameId") Long gameId) {
         Game game = gameService.findGameById(gameId);
         if (!userSession.getIsLoggedIn()){
-            String oldURL = "http://localhost:8080/Homework2/Web/gameDetails/"+gameId;
+            String oldURL = "gameDetails/"+gameId;
             session.setAttribute("oldURL", oldURL);
             String loginURL = "http://localhost:8080/Homework2/Web/login";
             return Response.status(Response.Status.FOUND).location(URI.create(loginURL)).build();

@@ -6,6 +6,7 @@ package deim.urv.cat.homework2.controller;
 
 
 import jakarta.enterprise.context.SessionScoped;
+import jakarta.inject.Inject;
 import java.io.Serializable;
 /**
  *
@@ -15,7 +16,8 @@ import java.io.Serializable;
 public class UserSession implements Serializable {
     private String username;
     private boolean isLoggedIn=false;
-
+    @Inject Cart cart;
+    
     public String getUsername() {
         return username;
     }
