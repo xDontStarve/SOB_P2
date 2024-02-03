@@ -48,11 +48,15 @@
             UserSession userSession = (UserSession) session.getAttribute("userSession"); // Recupera el objeto UserSession de la sesión
             if (userSession != null && userSession.getIsLoggedIn()) {
         %>
-            <div class="alert alert-success" role="alert">
-                Hola, <%= userSession.getUsername() %>
-            </div>
+            <form action="${mvc.uri('user')}" method="GET">    
+                <div class="alert alert-success" role="alert">
+                    <button type="submit" class="btn btn-primary">Hola, <%= userSession.getUsername() %></button>
+                </div>
+            </form>
         <% } else { %>
-            <button class="btn btn-primary btn-corner" onclick="redireccionar()">Login</button>
+            <form action="" method="POST">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
         <% } %>
         <h1>Listado de Juegos</h1>
         <div id="gameList" class="row">
@@ -82,11 +86,5 @@
             %>
         </div>
     </div>
-        <script>
-            function redireccionar() {
-                // Redirigir a login
-                window.location.href = "login";
-            }
-        </script>
 </body>
 </html>

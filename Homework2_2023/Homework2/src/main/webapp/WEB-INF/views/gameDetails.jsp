@@ -2,6 +2,7 @@
 <%@page import="deim.urv.cat.homework2.model.Game"%>
 <%@page import="deim.urv.cat.homework2.model.Game.Console"%>
 <%@page import="deim.urv.cat.homework2.model.Game.Genre"%>
+<%@page import="deim.urv.cat.homework2.controller.UserSession"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,6 +39,20 @@
     </style>
 </head>
 <body>
+    <% 
+        UserSession userSession = (UserSession) session.getAttribute("userSession"); // Recupera el objeto UserSession de la sesión
+        if (userSession != null && userSession.getIsLoggedIn()) {
+    %>
+        <form action="${mvc.uri('user')}" method="GET">    
+            <div class="alert alert-success" role="alert">
+                <button type="submit" class="btn btn-primary">Hola, <%= userSession.getUsername() %></button>
+            </div>
+        </form>
+    <% } else { %>
+        <form action="" method="POST">
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    <% } %>
     <div class="container mt-5">
         <h2>Detalles del Juego</h2>
         <div>

@@ -4,14 +4,23 @@
  */
 package deim.urv.cat.homework2.model;
 
+import jakarta.enterprise.context.SessionScoped;
+import java.io.Serializable;
+
 /**
  *
  * @author chali
  */
-public class CustomerDTO {
+@SessionScoped
+public class CustomerDTO implements Serializable{
     private long id;
     private String username;
     private String email;
+    
+    public CustomerDTO(){
+        
+    }
+    
     public CustomerDTO(Customer customer){
         this.id=customer.getId();
         this.username=customer.getUsername();
