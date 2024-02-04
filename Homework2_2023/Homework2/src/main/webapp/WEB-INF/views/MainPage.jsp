@@ -44,20 +44,28 @@
 </head>
 <body>
     <div class="container-fluid">
-        <% 
-            UserSession userSession = (UserSession) session.getAttribute("userSession"); // Recupera el objeto UserSession de la sesión
-            if (userSession != null && userSession.getIsLoggedIn()) {
-        %>
-            <form action="${mvc.uri('user')}" method="GET">    
-                <div class="alert alert-success" role="alert">
-                    <button type="submit" class="btn btn-primary">Hola, <%= userSession.getUsername() %></button>
-                </div>
+        <div class="d-flex justify-content-center mt-3 mb-3">
+            <form action="${mvc.uri('main')}" method="GET" class="mr-2">
+                <button type="submit" class="btn btn-primary">Home</button>
             </form>
-        <% } else { %>
-            <form action="" method="POST">
-                <button type="submit" class="btn btn-primary">Login</button>
+            <% 
+                UserSession userSession = (UserSession) session.getAttribute("userSession"); // Recupera el objeto UserSession de la sesión
+                if (userSession != null && userSession.getIsLoggedIn()) {
+            %>
+                <form action="${mvc.uri('user')}" method="GET" class="mr-2">    
+                    <div class="alert alert-success" role="alert">
+                        <button type="submit" class="btn btn-primary">Hola, <%= userSession.getUsername() %></button>
+                    </div>
+                </form>
+            <% } else { %>
+                <form action="" method="POST" class="mr-2">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+            <% } %>
+            <form action="${mvc.uri('cart')}" method="GET" class="mr-2">
+                <button type="submit" class="btn btn-primary">Cart</button>
             </form>
-        <% } %>
+        </div>
         <h1>Listado de Juegos</h1>
         <div id="gameList" class="row">
             <%

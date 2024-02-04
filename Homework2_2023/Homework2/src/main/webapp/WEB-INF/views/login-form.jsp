@@ -19,6 +19,11 @@
 </head>
 <body>
 	<div class="container">
+            <div class="d-flex justify-content-center mt-3 mb-3">
+                <form action="${mvc.uri('main')}" method="GET" class="mr-2">
+                    <button type="submit" class="btn btn-primary">Home</button>
+                </form>
+            </div>
 		<div class="col-md-offset-2 col-md-7">
 			<h2 class="text-center">Login</h2>
 			<div class="panel panel-info">

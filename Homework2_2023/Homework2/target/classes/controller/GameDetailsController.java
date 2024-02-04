@@ -39,16 +39,17 @@ public class GameDetailsController {
     
     @POST
     @Path("{gameId}")
-    public Response addGameToCart(@PathParam("gameId") Long gameId) {
+    public String addGameToCart(@PathParam("gameId") Long gameId) {
         Game game = gameService.findGameById(gameId);
+        session.removeAttribute("oldURL");
+        String oldURL = "gameDetails/"+gameId;
+        session.setAttribute("oldURL", oldURL);
         if (!userSession.getIsLoggedIn()){
-            String oldURL = "gameDetails/"+gameId;
-            session.setAttribute("oldURL", oldURL);
-            String loginURL = "http://localhost:8080/Homework2/Web/login";
-            return Response.status(Response.Status.FOUND).location(URI.create(loginURL)).build();
+            return "login-form.jsp";
         }
-        
-        return Response.ok().build();
+        cart.addGame(game);
+        session.setAttribute("cart", cart);
+        return "cart.jsp";
     }
     
     

@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 @SessionScoped
 public class Cart implements Serializable{
-    private ArrayList<Game> cart;
+    private ArrayList<Game> cart = new ArrayList<Game>();
 
     public ArrayList<Game> getCart() {
         return cart;
@@ -25,5 +25,7 @@ public class Cart implements Serializable{
         this.cart = cart;
     }
     
-    
+    public void addGame(Game game){
+        this.cart.add(game);
+    }
 }

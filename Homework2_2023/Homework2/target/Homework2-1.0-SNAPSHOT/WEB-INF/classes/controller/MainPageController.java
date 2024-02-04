@@ -8,9 +8,9 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import java.util.List;
 import deim.urv.cat.homework2.model.*;
+import jakarta.mvc.UriRef;
 import jakarta.servlet.http.*;
 import jakarta.ws.rs.POST;
-import java.util.ArrayList;
 
 import java.util.logging.Logger;
 
@@ -26,15 +26,13 @@ public class MainPageController {
     @Inject Cart cart;
     
     @GET
+    @UriRef("main")
     public String showForm() {
         List<Game> games = gameService.findGames();
         session.setAttribute("userSession", userSession);
         session.setAttribute("cart", cart);
         String oldURL = "MainPage";
         session.setAttribute("oldURL", oldURL);
-        for (Game game : games){
-            System.out.println(game);
-        }
         return "MainPage.jsp";
     }
     
