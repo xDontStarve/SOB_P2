@@ -32,7 +32,7 @@ public class CartController {
             session.setAttribute("cart", cart);
             oldURL = (String) session.getAttribute("oldURL");
             session.removeAttribute("oldURL");
-            return "cart.jsp:";
+            return "cart.jsp";
         }
         oldURL = "cart";
         return "login-form.jsp";

@@ -58,7 +58,7 @@
                     </div>
                 </form>
             <% } else { %>
-                <form action="" method="POST" class="mr-2">
+                <form action="${mvc.uri('login')}" method="GET" class="mr-2">
                     <button type="submit" class="btn btn-primary">Login</button>
                 </form>
             <% } %>
@@ -66,16 +66,40 @@
                 <button type="submit" class="btn btn-primary">Cart</button>
             </form>
         </div>
+        <!-- Menú desplegable para Género -->
+        <form action="${mvc.uri('genre')}" class="mb-3">
+            <select name="genre" class="form-control" onchange="this.form.submit()">
+                <option name="genre" value="">Filtrar por Género...</option>
+                <%
+                    List<Game.Genre> genres = (List<Game.Genre>) session.getAttribute("genres");  
+                    for (Game.Genre genre : genres){
+                        out.println("<option value="+genre+">"+genre+"</option>");
+                    }
+                %>
+            </select>
+        </form>
+        <!-- Menú desplegable para Consola -->
+        <form action="${mvc.uri('console')}" class="mb-3">
+            <select name="console" class="form-control" onchange="this.form.submit()">
+                <option name="console" value="">Filtrar por Consola...</option>
+                <%
+                    List<Game.Console> consoles = (List<Game.Console>) session.getAttribute("consoles");  
+                    for (Game.Console console : consoles){
+                        out.println("<option value="+console+">"+console+"</option>");
+                    }
+                %>
+            </select>
+        </form>
         <h1>Listado de Juegos</h1>
         <div id="gameList" class="row">
             <%
                 GameService service = new GameService();
-                List<Game> games = service.findGames();
+                List<Game> games = (List<Game>) session.getAttribute("games");
                 if(games != null && !games.isEmpty()) {
                     for(Game game : games) {
                         // Agrega un enlace (<a>) alrededor de toda la tarjeta
                         out.println("<div class='col-md-4'>"); // 3 columnas para las tarjetas
-                        out.println("<a href='gameDetails/" + game.getId() + "' class='card-link'>"); // Reemplaza 'URL-de-la-pagina-de-destino' con la URL correcta
+                        out.println("<a href='/Homework2/Web/gameDetails/" + game.getId() + "' class='card-link'>"); // Reemplaza 'URL-de-la-pagina-de-destino' con la URL correcta
                         out.println("<div class='card'>");
                         // Asegura que la imagen sea fluida y se ajuste bien dentro de la tarjeta
                         out.println("<img src='/Homework2/resources/img/" + game.getName() + ".png' class='card-img-top img-fluid' alt='" + game.getName() + "'>");

@@ -34,10 +34,10 @@ public class UserDetailsController {
     @POST
     @UriRef("logout")
     public String logout(){
-        session.removeAttribute("UserSession");
+        session.removeAttribute("userSession");
         session.removeAttribute("userForm");
         userSession = new UserSession();
         session.invalidate(); // Destruye la sesión actual
-        return "MainPage.jsp";
+        return "redirect:MainPage";
     }
 }
