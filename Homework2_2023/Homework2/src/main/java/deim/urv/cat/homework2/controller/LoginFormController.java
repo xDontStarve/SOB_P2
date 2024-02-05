@@ -38,6 +38,7 @@ public class LoginFormController {
         
         // Verifica si la respuesta es exitosa / existe customer
         if (response.getStatus() == Response.Status.OK.getStatusCode()) {
+            models.put("loginFailed", false);
             CustomerDTO customerDTO;
             customerDTO = response.readEntity(CustomerDTO.class);
             session.setAttribute("customerDTO", customerDTO);
@@ -55,6 +56,7 @@ public class LoginFormController {
             return "redirect:"+oldURL;
         } else {
             // No existe customer
+            models.put("loginFailed", true);
             response.close();
             return "login-form.jsp";
         }

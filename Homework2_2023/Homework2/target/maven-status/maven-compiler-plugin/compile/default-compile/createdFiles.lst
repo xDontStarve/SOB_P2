@@ -15,6 +15,7 @@ deim\urv\cat\homework2\model\Game$Genre.class
 deim\urv\cat\homework2\service\GameService$1.class
 deim\urv\cat\homework2\controller\UserForm.class
 deim\urv\cat\homework2\controller\Cart.class
+deim\urv\cat\homework2\controller\CheckoutController.class
 deim\urv\cat\homework2\controller\LoginFormController.class
 deim\urv\cat\homework2\model\Game$Console.class
 deim\urv\cat\homework2\model\RentalGamesWrapper.class

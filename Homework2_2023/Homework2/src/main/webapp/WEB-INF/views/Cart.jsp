@@ -56,6 +56,9 @@
                 </div>
             </c:forEach>
         </div>
+        <form action="${mvc.uri('checkout')}" method="GET" class="mr-2">
+            <button type="submit" class="btn btn-primary">Checkout</button>
+        </form>
     </div>
 </body>
 </html>

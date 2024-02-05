@@ -52,9 +52,9 @@
 							</div>
 						</div>
 					</form>
-                                        <c:if test="${not empty message}">
+                                        <c:if test="${loginFailed}">
                                             <div class="alert alert-danger" role="alert">
-                                                ${message}        
+                                                INVALID CREDENTIALS     
                                             </div>
                                         </c:if>
                                         <jsp:include page="/WEB-INF/views/layout/alert.jsp" />
