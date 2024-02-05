@@ -48,18 +48,18 @@ public class CheckoutController {
     @UriRef("pay")
     public String pay(){
         CheckoutService service = new CheckoutService();
-        Cart cart = (Cart) session.getAttribute("cart");
-        CustomerDTO customerDTO = (CustomerDTO) session.getAttribute("customerDTO");
-        float totalPrice=0;
-        ArrayList<Game> games = cart.getCart();
-        for (Game game : games){
-            totalPrice+=game.getPrice();
+        if (!cart.getCart().isEmpty()){
+            CustomerDTO customerDTO = (CustomerDTO) session.getAttribute("customerDTO");
+            float totalPrice=0;
+            ArrayList<Game> games = cart.getCart();
+            for (Game game : games){
+                totalPrice+=game.getPrice();
+            }
+            String response = service.postRent(games, customerDTO.getId(), totalPrice);
+            session.setAttribute("rentInfo", response);
+            cart.setCart(new ArrayList<Game>());
+            return "Checkout.jsp";
         }
-        String response = service.postRent(games, customerDTO.getId(), totalPrice);
-        session.setAttribute("rentInfo", response);
-        cart = new Cart();
-        session.removeAttribute("cart");
-        session.setAttribute("cart", cart);
         return "Checkout.jsp";
     }
 }

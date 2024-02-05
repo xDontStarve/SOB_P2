@@ -46,10 +46,28 @@
         </form>
         <c:if test="${not empty sessionScope.rentInfo}">
             <div class="alert alert-success" role="alert">
-                <strong>Resultado del Alquiler:</strong>
-                <pre>${sessionScope.rentInfo}</pre>
+                <strong>Resultado del Alquiler:</strong><br>
+                <%
+                    String rentInfo = (String) session.getAttribute("rentInfo");
+                    if (rentInfo != null && !rentInfo.isEmpty()) {
+                        // Remplaza las comillas y llaves para mejorar la legibilidad
+                        rentInfo = rentInfo.replace("{", "").replace("}", "").replace("\"", "");
+                        // Sustituye comas por saltos de línea para un formato más legible
+                        rentInfo = rentInfo.replace(",", "<br>");
+                        out.println(rentInfo);
+                    }
+                %>
             </div>
         </c:if>
+        <%
+            // Obtener la sesión actual
+            session = request.getSession();
+
+            // Cambiar el valor de 'rentInfo' en la sesión
+            if (session != null) {
+                session.setAttribute("rentInfo", "");
+            }
+        %>
     </div>
 </body>
 </html>

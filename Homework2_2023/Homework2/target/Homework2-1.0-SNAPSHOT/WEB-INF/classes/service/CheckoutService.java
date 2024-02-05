@@ -6,6 +6,8 @@ import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -22,8 +24,8 @@ public class CheckoutService {
     
     public String postRent(ArrayList<Game> games, long customerId, float total){
         // Obtener la fecha de alquiler actual y calcular la fecha de devolución
-        LocalDate rentalDate = LocalDate.now();
-        LocalDate returnDate = rentalDate.plusDays(7);
+        ZonedDateTime rentalDate = ZonedDateTime.now(ZoneId.of("UTC"));
+        ZonedDateTime returnDate = rentalDate.plusDays(7);
 
         // Preparar la lista de IDs de juegos
         ArrayList<Long> gameIDs = new ArrayList<Long>();
@@ -33,8 +35,8 @@ public class CheckoutService {
         
         // Formatear las fechas
         DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
-        String formattedRentalDate = rentalDate.atStartOfDay().format(formatter) + "Z[UTC]";
-        String formattedReturnDate = returnDate.atStartOfDay().format(formatter) + "Z[UTC]";
+        String formattedRentalDate = formatter.format(rentalDate);
+        String formattedReturnDate = formatter.format(returnDate);
         
         // Construir el cuerpo de la solicitud JSON
         String json = "{"
@@ -46,7 +48,7 @@ public class CheckoutService {
                 + "},"
                 + "\"gameIDs\":" + gameIDs.toString()
                 + "}";
-        
+        System.out.println(json);
         // Enviar la petición POST
         Response response = webTarget.request(MediaType.APPLICATION_JSON)
                 .post(Entity.entity(json, MediaType.APPLICATION_JSON));
