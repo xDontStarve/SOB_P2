@@ -8,6 +8,7 @@ import jakarta.mvc.Models;
 import jakarta.mvc.UriRef;
 import jakarta.servlet.http.HttpSession;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 
@@ -34,7 +35,6 @@ public class CartController {
             session.removeAttribute("oldURL");
             return "cart.jsp";
         }
-        oldURL = "cart";
         return "login-form.jsp";
     }
 }

@@ -38,12 +38,6 @@ public class MainPageController {
         List<Game> games = gameService.findGames();
         List<Game.Console> consoles = Set.of(Game.Console.values()).stream().toList();
         List<Game.Genre> genres = Set.of(Game.Genre.values()).stream().toList();
-        for (Game.Genre genre: genres){
-            System.out.println(genre);
-        }
-        for (Game.Console console: consoles){
-            System.out.println(console);
-        }
         session.setAttribute("consoles", consoles);
         session.setAttribute("genres", genres);
         session.setAttribute("games", games);

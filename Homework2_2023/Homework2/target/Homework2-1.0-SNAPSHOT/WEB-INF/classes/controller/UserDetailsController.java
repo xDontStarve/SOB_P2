@@ -36,6 +36,7 @@ public class UserDetailsController {
     public String logout(){
         session.removeAttribute("userSession");
         session.removeAttribute("userForm");
+        session.removeAttribute("userDTO");
         userSession = new UserSession();
         session.invalidate(); // Destruye la sesión actual
         return "redirect:MainPage";

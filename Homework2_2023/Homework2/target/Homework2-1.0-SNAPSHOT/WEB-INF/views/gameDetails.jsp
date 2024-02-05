@@ -85,6 +85,7 @@
                 <form action="${pageContext.request.contextPath}/Web/gameDetails/${game.id}" method="post">
                     <button type="submit" class="btn btn-primary" style="${game.units < 1 ? 'display: none;' : ''}">Añadir a la cesta</button>
                 </form>
+                <button type="submit" class="btn btn-primary" style="${game.units >= 1 ? 'display: none;' : 'background-color: #843534'} ">No hay Stock disponible</button>
             </div>
         </div>
     </div>

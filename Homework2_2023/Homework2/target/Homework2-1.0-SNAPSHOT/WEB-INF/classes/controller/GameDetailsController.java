@@ -20,8 +20,8 @@ import java.util.ArrayList;
 public class GameDetailsController {
     
     @Inject GameService gameService;
-    @Inject UserSession userSession;
     @Inject Models models;
+    @Inject UserSession userSession;
     @Inject HttpSession session;
     @Inject Cart cart;
     

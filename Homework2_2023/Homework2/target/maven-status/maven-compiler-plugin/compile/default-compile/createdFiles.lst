@@ -10,6 +10,7 @@ deim\urv\cat\homework2\model\CustomerDTO.class
 deim\urv\cat\homework2\PropertyProducer.class
 deim\urv\cat\homework2\MvcEventListener.class
 deim\urv\cat\homework2\model\User.class
+deim\urv\cat\homework2\service\CheckoutService.class
 deim\urv\cat\homework2\Property.class
 deim\urv\cat\homework2\model\Game$Genre.class
 deim\urv\cat\homework2\service\GameService$1.class
