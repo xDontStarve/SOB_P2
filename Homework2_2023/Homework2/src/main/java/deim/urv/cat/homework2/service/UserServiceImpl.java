@@ -2,7 +2,6 @@ package deim.urv.cat.homework2.service;
 
 import deim.urv.cat.homework2.model.User;
 import deim.urv.cat.homework2.controller.UserForm;
-import deim.urv.cat.homework2.model.CustomerDTO;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.MediaType;

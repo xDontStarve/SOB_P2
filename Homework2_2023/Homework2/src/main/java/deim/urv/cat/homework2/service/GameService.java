@@ -5,7 +5,6 @@ import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.GenericType;
-import java.util.ArrayList;
 import java.util.List;
         
 public class GameService{

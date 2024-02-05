@@ -1,6 +1,5 @@
 package deim.urv.cat.homework2.controller;
 
-import deim.urv.cat.homework2.model.CustomerDTO;
 import deim.urv.cat.homework2.model.Game;
 import deim.urv.cat.homework2.service.GameService;
 import jakarta.inject.Inject;
@@ -11,9 +10,6 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.POST;
-import jakarta.ws.rs.core.Response;
-import java.net.URI;
-import java.util.ArrayList;
 
 @Controller
 @Path("gameDetails")

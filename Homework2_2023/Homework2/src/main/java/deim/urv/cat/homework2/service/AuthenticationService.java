@@ -1,7 +1,6 @@
 package deim.urv.cat.homework2.service;
 
 import deim.urv.cat.homework2.controller.UserForm;
-import deim.urv.cat.homework2.model.CustomerDTO;
 import jakarta.inject.Inject;
 import jakarta.servlet.http.HttpSession;
 import jakarta.ws.rs.client.Entity;

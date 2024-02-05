@@ -11,20 +11,15 @@ import deim.urv.cat.homework2.model.*;
 import jakarta.mvc.Models;
 import jakarta.mvc.UriRef;
 import jakarta.servlet.http.*;
-import jakarta.validation.Valid;
-import jakarta.ws.rs.BeanParam;
-import jakarta.ws.rs.POST;
 import jakarta.ws.rs.QueryParam;
 import java.util.Set;
 
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 @Controller
 @Path("MainPage")
 public class MainPageController {    
     // CDI
-    @Inject BindingResult bindingResult;
     @Inject Logger log;
     @Inject GameService gameService;
     @Inject UserSession userSession;

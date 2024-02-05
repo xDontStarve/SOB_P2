@@ -5,12 +5,10 @@ import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 public class CheckoutService {
     private final WebTarget webTarget;
@@ -56,7 +54,6 @@ public class CheckoutService {
         // Leer y devolver la respuesta
         if (response.getStatus() == 201) {
             String jsonResponse = response.readEntity(String.class);
-            // Aquí puedes procesar y formatear la respuesta JSON como desees
             return jsonResponse;
         } else {
             return "Error: " + response.getStatus();
