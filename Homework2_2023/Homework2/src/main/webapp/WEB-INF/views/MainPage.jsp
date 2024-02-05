@@ -29,6 +29,9 @@
             flex-direction: column;
             justify-content: space-between;
         }
+        .card-title {
+            text-transform: uppercase;
+        }
         .container-fluid {
             max-width: 90%;
         }
@@ -53,7 +56,7 @@
                 if (userSession != null && userSession.getIsLoggedIn()) {
             %>
                 <form action="${mvc.uri('user')}" method="GET" class="mr-2">    
-                    <div class="alert alert-success" role="alert">
+                    <div>
                         <button type="submit" class="btn btn-primary">Hola, <%= userSession.getUsername() %></button>
                     </div>
                 </form>
@@ -106,7 +109,7 @@
                         out.println("<div class='card-body'>");
                         out.println("<h5 class='card-title'>" + game.getName() + "</h5>");
                         out.println("<p class='card-text'>Unidades disponibles: " + game.getUnits() + "</p>");
-                        out.println("<p class='card-text'><small class='text-muted'>Género: " + game.getGenre() + ", Consola: " + game.getConsole() + "</small></p>");
+                        out.println("<p class='card-text'><small class='text-muted'>Precio: " + game.getPrice() + "€ , Consola: " + game.getConsole() + "</small></p>");
                         out.println("</div>"); // Cierra card-body
                         out.println("</div>"); // Cierra card
                         out.println("</a>"); // Cierra el enlace

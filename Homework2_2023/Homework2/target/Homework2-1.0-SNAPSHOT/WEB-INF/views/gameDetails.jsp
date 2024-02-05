@@ -17,12 +17,14 @@
             object-fit: contain; /* Asegura que la imagen se muestre completamente */
             height: auto;
             max-width: 400px; /* Máximo ancho de la imagen */
-            background-color: #f8f9fa; /* Fondo para rellenar el espacio vacío */
             margin: auto; /* Centra la imagen horizontalmente */
         }
         body {
             background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
-            color: #fff; /* Cambia el color del texto para mejorar la legibilidad */
+            color: #000; /* Cambia el color del texto para mejorar la legibilidad */
+        }
+        h3 {
+            text-transform: uppercase;
         }
         .container {
             background: rgba(255, 255, 255, 0.8); /* Hace el contenedor ligeramente transparente */
@@ -48,7 +50,7 @@
             if (userSession != null && userSession.getIsLoggedIn()) {
         %>
             <form action="${mvc.uri('user')}" method="GET" class="mr-2">    
-                <div class="alert alert-success" role="alert">
+                <div>
                     <button type="submit" class="btn btn-primary">Hola, <%= userSession.getUsername() %></button>
                 </div>
             </form>
@@ -74,14 +76,14 @@
             <div class="col-12 col-lg-6 d-lg-flex flex-lg-column align-items-lg-center">
                 <h3>${game.name}</h3>
                 <p><strong>Disponibilidad:</strong> ${game.isAvailable ? 'Disponible' : 'No disponible'}</p>
-                <p><strong>Precio:</strong> ${game.price}</p>
+                <p><strong>Precio:</strong> ${game.price}€</p>
                 <p><strong>Descripción:</strong> ${game.description}</p>
                 <p><strong>Dirección:</strong> ${game.address}</p>
                 <p><strong>Unidades:</strong> ${game.units}</p>
                 <p><strong>Género:</strong> ${game.genre}</p>
                 <p><strong>Consola:</strong> ${game.console}</p>
                 <form action="${pageContext.request.contextPath}/Web/gameDetails/${game.id}" method="post">
-                    <button type="submit" class="btn btn-primary">Añadir a la cesta</button>
+                    <button type="submit" class="btn btn-primary" style="${game.units < 1 ? 'display: none;' : ''}">Añadir a la cesta</button>
                 </form>
             </div>
         </div>

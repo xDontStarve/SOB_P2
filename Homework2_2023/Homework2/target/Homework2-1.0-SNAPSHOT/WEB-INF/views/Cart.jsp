@@ -9,6 +9,32 @@
     <!-- CDN de Bootstrap CSS para diseño responsivo -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .game-img {
+            max-height: 10vw; /* Altura máxima basada en el ancho de la ventana */
+            max-width: 10vw; /* Anchura máxima igual a la altura para mantener la proporción del cuadrado */
+            object-fit: contain; /* Escala la imagen para ajustarse dentro del contenedor sin recortar */
+            border-radius: 5px; /* Opcional: Añade bordes redondeados a la imagen */
+            margin-left: auto; /* Alinea la imagen a la derecha */
+            background-color: #f8f9fa; /* Color de fondo para el espacio no ocupado por la imagen */
+        }
+        .list-group-item {
+            display: flex; /* Usa Flexbox para alinear elementos horizontalmente */
+            align-items: center; /* Centra los elementos verticalmente dentro del item */
+            justify-content: space-between; /* Separa el contenido y la imagen */
+        }
+        .item-content {
+            flex-grow: 1; /* Permite que la descripción ocupe el espacio disponible */
+        }
+
+        /* Ajustes para pantallas más pequeñas */
+        @media (max-width: 768px) {
+            .game-img {
+                max-height: 20vw; /* Aumenta el tamaño de la imagen en pantallas más pequeñas */
+                max-width: 20vw;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="d-flex justify-content-center mt-3 mb-3">
@@ -22,8 +48,11 @@
             <!-- Iterar sobre la lista de juegos en el carrito -->
             <c:forEach var="game" items="${cart.cart}">
                 <div class="list-group-item">
-                    <h5 class="mb-1">Nombre del Juego: ${game.name}</h5>
-                    <p class="mb-1">Precio: ${game.price}</p>
+                    <div class="item-content">
+                        <h5 class="mb-1">Nombre del Juego: ${game.name}</h5>
+                        <p class="mb-1">Precio: ${game.price}€</p>
+                    </div>
+                    <img src="/Homework2/resources/img/${game.name}.png" class="game-img" alt="Imagen del juego">
                 </div>
             </c:forEach>
         </div>
